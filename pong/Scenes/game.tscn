@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://djwewioeynbpj"]
+
+[ext_resource type="Script" uid="uid://bfsfqxrbgjml6" path="res://Scripts/left_paddle.gd" id="1_qxrlw"]
+[ext_resource type="Script" uid="uid://4v53qb4pxs06" path="res://Scripts/right_paddle.gd" id="2_wrm1d"]
+[ext_resource type="Script" uid="uid://pxat0lyce4hb" path="res://Scripts/ball.gd" id="3_wrm1d"]
+[ext_resource type="Shader" uid="uid://c1nmcduddc766" path="res://Shaders/circle.gdshader" id="4_wowpa"]
+[ext_resource type="Texture2D" uid="uid://yx4exaxsyvws" path="res://Assets/1x1.png" id="5_i6g32"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wejf6"]
+size = Vector2(23, 88)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lp6ur"]
+shader = ExtResource("4_wowpa")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wejf6"]
+radius = 14.035668
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nntnf"]
+size = Vector2(1170, 20)
+
+[node name="Game" type="Node2D" unique_id=1772535342]
+
+[node name="LeftPaddle" type="CharacterBody2D" parent="." unique_id=1989570170]
+position = Vector2(23, 68)
+script = ExtResource("1_qxrlw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftPaddle" unique_id=503385855]
+shape = SubResource("RectangleShape2D_wejf6")
+
+[node name="ColorRect" type="ColorRect" parent="LeftPaddle" unique_id=1350798214]
+offset_left = -13.0
+offset_top = -44.0
+offset_right = 12.0
+offset_bottom = 44.0
+color = Color(0.1728327, 0.17283267, 0.17283267, 1)
+
+[node name="RightPaddle" type="CharacterBody2D" parent="." unique_id=1094598920]
+position = Vector2(1127, 68)
+script = ExtResource("2_wrm1d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightPaddle" unique_id=1898018489]
+shape = SubResource("RectangleShape2D_wejf6")
+
+[node name="ColorRect" type="ColorRect" parent="RightPaddle" unique_id=1549851322]
+offset_left = -13.0
+offset_top = -44.0
+offset_right = 12.0
+offset_bottom = 44.0
+color = Color(0.1728327, 0.17283267, 0.17283267, 1)
+
+[node name="Ball" type="CharacterBody2D" parent="." unique_id=1329903876]
+script = ExtResource("3_wrm1d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=1648785653]
+material = SubResource("ShaderMaterial_lp6ur")
+position = Vector2(573, 307.00003)
+scale = Vector2(28.236038, 27.349195)
+texture = ExtResource("5_i6g32")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1751898199]
+position = Vector2(573, 307)
+shape = SubResource("CircleShape2D_wejf6")
+
+[node name="Wall" type="StaticBody2D" parent="." unique_id=1170542307]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=1965792883]
+position = Vector2(579, -12)
+shape = SubResource("RectangleShape2D_nntnf")
+
+[node name="Wall2" type="StaticBody2D" parent="." unique_id=1164651751]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" unique_id=36233234]
+position = Vector2(577, 659)
+shape = SubResource("RectangleShape2D_nntnf")
