@@ -13,9 +13,3 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var norm = collision.get_normal()
 		velocity = velocity.bounce(norm)
-
-func change_dir(side: String):
-	if side == "left":
-		pass
-	if side == "right":
-		pass
