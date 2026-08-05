@@ -1,8 +1,6 @@
 extends CharacterBody2D
 
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 350.0
 
 func _ready():
 	var x = [-1, 1].pick_random() # Left or right
@@ -15,3 +13,9 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var norm = collision.get_normal()
 		velocity = velocity.bounce(norm)
+
+func change_dir(side: String):
+	if side == "left":
+		pass
+	if side == "right":
+		pass

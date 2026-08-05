@@ -5,9 +5,10 @@
 [ext_resource type="Script" uid="uid://pxat0lyce4hb" path="res://Scripts/ball.gd" id="3_wrm1d"]
 [ext_resource type="Shader" uid="uid://c1nmcduddc766" path="res://Shaders/circle.gdshader" id="4_wowpa"]
 [ext_resource type="Texture2D" uid="uid://yx4exaxsyvws" path="res://Assets/1x1.png" id="5_i6g32"]
+[ext_resource type="Texture2D" uid="uid://bi6inspvt705v" path="res://Assets/dot-line.png" id="6_i6g32"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wejf6"]
-size = Vector2(23, 88)
+size = Vector2(17.875, 88)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lp6ur"]
 shader = ExtResource("4_wowpa")
@@ -16,7 +17,10 @@ shader = ExtResource("4_wowpa")
 radius = 14.035668
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nntnf"]
-size = Vector2(1170, 20)
+size = Vector2(811, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wowpa"]
+size = Vector2(639.47107, 22.1522)
 
 [node name="Game" type="Node2D" unique_id=1772535342]
 
@@ -25,24 +29,26 @@ position = Vector2(23, 68)
 script = ExtResource("1_qxrlw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftPaddle" unique_id=503385855]
+position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_wejf6")
 
 [node name="ColorRect" type="ColorRect" parent="LeftPaddle" unique_id=1350798214]
 offset_left = -13.0
 offset_top = -44.0
-offset_right = 12.0
+offset_right = 5.0
 offset_bottom = 44.0
 color = Color(0.1728327, 0.17283267, 0.17283267, 1)
 
 [node name="RightPaddle" type="CharacterBody2D" parent="." unique_id=1094598920]
-position = Vector2(1127, 68)
+position = Vector2(777, 68)
 script = ExtResource("2_wrm1d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightPaddle" unique_id=1898018489]
+position = Vector2(2.9375, 0)
 shape = SubResource("RectangleShape2D_wejf6")
 
 [node name="ColorRect" type="ColorRect" parent="RightPaddle" unique_id=1549851322]
-offset_left = -13.0
+offset_left = -6.0
 offset_top = -44.0
 offset_right = 12.0
 offset_bottom = 44.0
@@ -53,22 +59,62 @@ script = ExtResource("3_wrm1d")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=1648785653]
 material = SubResource("ShaderMaterial_lp6ur")
-position = Vector2(573, 307.00003)
+position = Vector2(400, 300)
 scale = Vector2(28.236038, 27.349195)
 texture = ExtResource("5_i6g32")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1751898199]
-position = Vector2(573, 307)
+position = Vector2(400, 300)
 shape = SubResource("CircleShape2D_wejf6")
 
-[node name="Wall" type="StaticBody2D" parent="." unique_id=1170542307]
+[node name="Ceiling" type="StaticBody2D" parent="." unique_id=1170542307]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=1965792883]
-position = Vector2(579, -12)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling" unique_id=1965792883]
+position = Vector2(399.5, -12)
 shape = SubResource("RectangleShape2D_nntnf")
 
-[node name="Wall2" type="StaticBody2D" parent="." unique_id=1164651751]
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1164651751]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" unique_id=36233234]
-position = Vector2(577, 659)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=36233234]
+position = Vector2(410, 613)
 shape = SubResource("RectangleShape2D_nntnf")
+
+[node name="LeftGoal" type="Area2D" parent="." unique_id=1512117996]
+position = Vector2(2, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftGoal" unique_id=271522586]
+position = Vector2(-13.994676, 305.23868)
+rotation = 1.5738409
+shape = SubResource("RectangleShape2D_wowpa")
+
+[node name="RightGoal" type="Area2D" parent="." unique_id=1732894752]
+position = Vector2(1177, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightGoal" unique_id=563072804]
+position = Vector2(-364.99997, 303.99997)
+rotation = 1.5738409
+shape = SubResource("RectangleShape2D_wowpa")
+
+[node name="P1Score" type="Label" parent="." unique_id=1023152519]
+offset_left = 314.0
+offset_top = -6.0
+offset_right = 354.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="P2Score" type="Label" parent="." unique_id=219596462]
+offset_left = 444.0
+offset_top = -6.0
+offset_right = 484.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="CenterLine" type="Line2D" parent="." unique_id=1998529839]
+modulate = Color(1, 1, 1, 0.4)
+texture_repeat = 2
+position = Vector2(400, -149)
+points = PackedVector2Array(0, 100, 0, 200, 0, 300, 0, 400, 0, 500, 0, 600, 0, 700, 0, 800)
+texture = ExtResource("6_i6g32")
+texture_mode = 1
