@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const VSPEED = 400.0
+const VSPEED = 450.0
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("up_p1", "down_p1")
